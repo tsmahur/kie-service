@@ -25,6 +25,18 @@ https://www.jbpm.org/businessapps/gettingStarted.html
 Documentation(opensource jbpmn):
 https://docs.jbpm.org/7.74.1.Final/jbpm-docs/html_single/
 
+https://www.jbpm.org/learn/documentation.html
+
+Execution Server REST API
+https://www.jbpm.org/api-docs/kie-server/overview.html
+https://www.jbpm.org/api-docs/kie-server/paths.html
+https://www.jbpm.org/api-docs/kie-server/definitions.html
+
+Controller REST API
+https://www.jbpm.org/api-docs/controller/overview.html
+https://www.jbpm.org/api-docs/controller/paths.html
+https://www.jbpm.org/api-docs/controller/definitions.html
+
 Docker imager:
 https://www.jbpm.org/learn/gettingStartedUsingDocker.html
 ```
