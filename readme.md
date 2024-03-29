@@ -49,3 +49,60 @@ https://download.jboss.org/jbpm/release/7.74.1.Final/jbpm-7.74.1.Final-examples.
 jbpm-examples -> [jbpm-7.74.1.Final-examples](https://github.com/tsmahur/jbpm-7.74.1.Final-examples)
 
 JBPMN
+
+--------------------
+# JBPMN : Spring Boot : Java Implementations:
+## Custom EventListener: 
+- CustomTaskEventListner [CustomTaskEventListner](src/main/java/com/tsm/eventlisteners/CustomTaskEventListener.java)
+- CustomProcessEventListner [CustomProcessEventListner](src/main/java/com/tsm/eventlisteners/CustomProcessEventListner.java)
+
+## Custom WorkItemHandler:
+- CustomWorkItemHandler
+- CustomEmailWorkItemHandler
+- CustomRestWorkItemHandler
+
+<u>Adding Custom Work Item Handler to JBPMN and defining it in java:</u>
+ 1. create custom [workitemhandler](src/main/java/com/tsm/workitemhandler)
+ 2. add config in workDefinations.wid 
+  ```
+    //sample config (can refer default workDefinations.wid in project):
+
+	[
+		"name": "TestWorkItemHandler",
+		"displayName": "TestWorkltemHandler",
+		"category": "jbpm-workitems-mycustom-tsm-test",
+		"description": "",
+		"defaultHandler": "mvel:com.tsm.workitemhandler.CustomWorkItemHandler()",
+		// "documentation": "jbpm-workitems-rest/index.html",
+		"icon": "defaultservicenodeicon.png",
+		"parameters": [
+			"ConnectTimeout": new StringDataType(),
+			"ResultClass": new StringDataType(),
+			"ContentType": new StringDataType(),
+			"AcceptCharset": new StringDataType(),
+			"Headers": new StringDataType(),
+			"AuthUrl": new StringDataType(),
+			"Method": new StringDataType(),
+			"ReadTimeout": new StringDataType(),
+			"Url": new StringDataType(),
+			"ContentTypeCharset": new StringDataType(),
+			"HandleResponseErrors": new StringDataType(),
+			"ContentData": new StringDataType(),
+			"Username": new StringDataType(),
+			"Content": new String DataType(),
+			"AcceptHeader": new StringDataType(),
+			"AuthType": new StringDataType(),
+			"Password": new StringDataType()
+		],
+		"results": [
+			"Result": new StringDataType()
+		]
+	]
+   ```
+	
+ 3. JBPMN > settings > deployment > workitemhanlder
+   - Now add : <br >
+       - Name -> this name will be referred in the bpmn
+       - Value -> new [com.tsm.workitemhandler.CustomWorkItemHandler()](src/main/java/com/tsm/workitemhandler/CustomWorkItemHandler.java) //here we can also call parameterized constructor defined in custom workitem handler
+       - Resolver Type -> MVEL
+   - Now go to bpmn editor > Left Side Pallet > CustomTasks Icon > now above task will be available here 
