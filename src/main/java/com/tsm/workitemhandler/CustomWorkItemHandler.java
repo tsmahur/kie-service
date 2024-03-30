@@ -1,14 +1,14 @@
 package com.tsm.workitemhandler;
 
-//import org.kie.api.runtime.process.WorkItemHandler;
-
-import org.drools.core.process.instance.WorkItemHandler;
+//import org.drools.core.process.instance.WorkItemHandler; //this is extending org.kie.api.runtime.process.WorkItemHandler
 //import org.jbpm.process.workitem.core.util.Wid;
 //import org.jbpm.process.workitem.core.util.WidMavenDepends;
 //import org.jbpm.process.workitem.core.util.WidParameter;
 //import org.jbpm.process.workitem.core.util.service.WidAction;
 //import org.jbpm.process.workitem.core.util.service.WidAuth;
 //import org.jbpm.process.workitem.core.util.service.WidService;
+
+import org.kie.api.runtime.process.WorkItemHandler; //
 import org.kie.api.runtime.process.WorkItem;
 import org.kie.api.runtime.process.WorkItemManager;
 
@@ -32,7 +32,7 @@ import org.kie.api.runtime.process.WorkItemManager;
                 authinfo = @WidAuth
         )
 )*/
-public class CustomWorkItemHandler implements WorkItemHandler {
+public class CustomWorkItemHandler implements WorkItemHandler { //extends AbstractLogOrThrowWorkItemHandler
     public CustomWorkItemHandler(){}
     @Override
     public void executeWorkItem(WorkItem workItem, WorkItemManager workItemManager) {

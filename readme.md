@@ -49,6 +49,18 @@ https://download.jboss.org/jbpm/release/7.74.1.Final/jbpm-7.74.1.Final-examples.
 - jbpm-examples -> [jbpm-7.74.1.Final-examples](https://github.com/tsmahur/jbpm-7.74.1.Final-examples)
 - Sample project in business central are also available.
   `JBPMN Space > project > Try Sample`
+---
+## Installing RedHat Jbpmn:
+- Using the Red Hat Process Automation Manager installer
+  - https://access.redhat.com/documentation/en-us/red_hat_process_automation_manager/7.1/html-single/installing_and_configuring_red_hat_process_automation_manager_on_red_hat_jboss_eap_7.1/index#roles-users-con
+    - Using the installer in interactive mode:
+      ```
+      java -jar rhpam-installer-7.1.0.jar
+      //use below to avoid administrator credentials
+      java -Dizpack.mode=privileged -jar rhpam-installer-7.1.0.jar
+      ```
+- Installing Red Hat Process Automation Manager from ZIP files :
+  - https://access.redhat.com/documentation/en-us/red_hat_process_automation_manager/7.1/html-single/installing_and_configuring_red_hat_process_automation_manager_on_red_hat_jboss_eap_7.1/index#assembly_installing-on-eap-deployable
 
 --------------------
 # JBPMN : Spring Boot : Java Implementations:
@@ -59,6 +71,8 @@ https://download.jboss.org/jbpm/release/7.74.1.Final/jbpm-7.74.1.Final-examples.
 ## Custom WorkItemHandler:
 - Some Pre Defined Custom WorkItems (found these under service-tasks folder by extracting business-central.war from standalone/deployment folder):  
   - https://docs.jbpm.org/7.72.0.Final/service-repository/
+  - `workitem definitation`,`deployment descriptor`,`actual jar`,`sample bpmn showcasing use` are avaible on this website
+  ![img.png](img.png)
     - jbpm-workitems-email : https://docs.jbpm.org/7.72.0.Final/service-repository/jbpm-workitems-email/jbpm-workitems-email.wid
       <pre>
       [
@@ -90,10 +104,11 @@ https://download.jboss.org/jbpm/release/7.74.1.Final/jbpm-7.74.1.Final-examples.
             "icon" : "defaultemailicon.png"
         ]
       ]
-      // Also refer "jbpm-workitems-email" dependency for reference to packaging workitem jar
+      // Also refer "jbpm-workitems-email" dependency for reference to packaging workitem jar 
+      // and actual java code behind this workitem {Refer below point}
       </pre>
-  - https://github.com/kiegroup/jbpm-work-items/tree/main
-    - ArchiveWorkItemHandler.java : https://github.com/kiegroup/jbpm-work-items/blob/main/archive-workitem/src/main/java/org/jbpm/process/workitem/archive/ArchiveWorkItemHandler.java
+  - To refer code of any predefined custom workitem : https://github.com/kiegroup/jbpm-work-items/tree/main
+    - eg. ArchiveWorkItemHandler.java : https://github.com/kiegroup/jbpm-work-items/blob/main/archive-workitem/src/main/java/org/jbpm/process/workitem/archive/ArchiveWorkItemHandler.java
 - CustomWorkItemHandler
 - CustomEmailWorkItemHandler
 - CustomRestWorkItemHandler
