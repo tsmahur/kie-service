@@ -6,11 +6,11 @@ also spring version and kie version upgraded
 ```
 mvn archetype:generate -B -DarchetypeGroupId=org.kie -DarchetypeArtifactId=kie-service-spring-boot-archetype -DarchetypeVersion=7.52.0.Final -DgroupId=com.tsm -DartifactId=tsm-service -Dversion=1.0-SNAPSHOT -Dpackage=com.tsm.service -DappType=bpm
 ```
-
+## Getting started with JBPMN
 
 https://www.jbpm.org/learn/gettingStartedUsingSingleZipDistribution.html
 
-Download jBPM 7.74.1.Final server (single zip) distribution
+### Download jBPM 7.74.1.Final server (single zip) distribution
 Just download, unzip and run
 
 On Unix/Linux:
@@ -19,36 +19,36 @@ On Unix/Linux:
 On Windows:
 `jbpm-server\bin\standalone.bat`
 
-Generating backend apps and getting started
+### Generating backend apps and getting started
 https://www.jbpm.org/businessapps/gettingStarted.html
 
-Documentation(opensource jbpmn):
+### Documentation (opensource jbpmn):
 https://docs.jbpm.org/7.74.1.Final/jbpm-docs/html_single/
 
 https://www.jbpm.org/learn/documentation.html
 
-Execution Server REST API
+### Execution Server REST API
 https://www.jbpm.org/api-docs/kie-server/overview.html
 https://www.jbpm.org/api-docs/kie-server/paths.html
 https://www.jbpm.org/api-docs/kie-server/definitions.html
 
-Controller REST API
+### Controller REST API
 https://www.jbpm.org/api-docs/controller/overview.html
 https://www.jbpm.org/api-docs/controller/paths.html
 https://www.jbpm.org/api-docs/controller/definitions.html
 
-Docker imager:
+### Docker imager:
 https://www.jbpm.org/learn/gettingStartedUsingDocker.html
 ```
 docker run -p 8080:8080 -p 8001:8001 -d --name jbpm-server-full jboss/jbpm-server-full:latest
 ```
 
-Examples:
+### Examples:
 https://download.jboss.org/jbpm/release/7.74.1.Final/jbpm-7.74.1.Final-examples.zip
 
-jbpm-examples -> [jbpm-7.74.1.Final-examples](https://github.com/tsmahur/jbpm-7.74.1.Final-examples)
-
-JBPMN
+- jbpm-examples -> [jbpm-7.74.1.Final-examples](https://github.com/tsmahur/jbpm-7.74.1.Final-examples)
+- Sample project in business central are also available.
+  `JBPMN Space > project > Try Sample`
 
 --------------------
 # JBPMN : Spring Boot : Java Implementations:
@@ -57,6 +57,43 @@ JBPMN
 - CustomProcessEventListner [CustomProcessEventListner](src/main/java/com/tsm/eventlisteners/CustomProcessEventListner.java)
 
 ## Custom WorkItemHandler:
+- Some Pre Defined Custom WorkItems (found these under service-tasks folder by extracting business-central.war from standalone/deployment folder):  
+  - https://docs.jbpm.org/7.72.0.Final/service-repository/
+    - jbpm-workitems-email : https://docs.jbpm.org/7.72.0.Final/service-repository/jbpm-workitems-email/jbpm-workitems-email.wid
+      <pre>
+      [
+        [
+            "name" : "Email",
+            "displayName" : "Email",
+            "category" : "jbpm-workitems-email",
+            "description" : "",
+            "defaultHandler" : "mvel: new org.jbpm.process.workitem.email.EmailWorkItemHandler()",
+            "documentation" : "jbpm-workitems-email/index.html",
+
+            "parameters" : [
+                                "Reply-To" : new StringDataType()
+                ,"Cc" : new StringDataType()
+                ,"Bcc" : new StringDataType()
+                ,"From" : new StringDataType()
+                ,"To" : new StringDataType()
+                ,"Body" : new StringDataType()
+                ,"Attachments" : new StringDataType()
+                ,"Subject" : new StringDataType()
+                ,"Debug" : new StringDataType()
+                ,"Template" : new StringDataType()
+
+            ],
+            "mavenDependencies" : [
+                                 "org.jbpm:jbpm-workitems-email:7.72.0.Final"
+
+            ],
+            "icon" : "defaultemailicon.png"
+        ]
+      ]
+      // Also refer "jbpm-workitems-email" dependency for reference to packaging workitem jar
+      </pre>
+  - https://github.com/kiegroup/jbpm-work-items/tree/main
+    - ArchiveWorkItemHandler.java : https://github.com/kiegroup/jbpm-work-items/blob/main/archive-workitem/src/main/java/org/jbpm/process/workitem/archive/ArchiveWorkItemHandler.java
 - CustomWorkItemHandler
 - CustomEmailWorkItemHandler
 - CustomRestWorkItemHandler
@@ -73,6 +110,7 @@ JBPMN
 		"category": "jbpm-workitems-mycustom-tsm-test",
 		"description": "",
 		"defaultHandler": "mvel:com.tsm.workitemhandler.CustomWorkItemHandler()",
+		//"defaultHandler" : "mvel: new com.tsm.workitemhandler.CustomWorkItemHandler()",
 		// "documentation": "jbpm-workitems-rest/index.html",
 		"icon": "defaultservicenodeicon.png",
 		"parameters": [
@@ -100,9 +138,11 @@ JBPMN
 	]
    ```
 	
- 3. JBPMN > settings > deployment > workitemhanlder
+ 3. `JBPMN > settings > deployment > workitemhanlder`
    - Now add : <br >
        - Name -> this name will be referred in the bpmn
        - Value -> new [com.tsm.workitemhandler.CustomWorkItemHandler()](src/main/java/com/tsm/workitemhandler/CustomWorkItemHandler.java) //here we can also call parameterized constructor defined in custom workitem handler
        - Resolver Type -> MVEL
-   - Now go to bpmn editor > Left Side Pallet > CustomTasks Icon > now above task will be available here 
+   - Now go to `bpmn editor > Left Side Pallet > CustomTasks Icon > now above task will be available here `
+
+##  CustomUserGroupCall :
